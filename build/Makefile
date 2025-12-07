@@ -117,41 +117,41 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named main
+# Target rules for targets named jacobi
 
 # Build rule for target.
-main: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 main
-.PHONY : main
+jacobi: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 jacobi
+.PHONY : jacobi
 
 # fast build rule for target.
-main/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/build
-.PHONY : main/fast
+jacobi/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/jacobi.dir/build.make CMakeFiles/jacobi.dir/build
+.PHONY : jacobi/fast
 
-src/main.o: src/main.cpp.o
-.PHONY : src/main.o
+src/jacobi.o: src/jacobi.cpp.o
+.PHONY : src/jacobi.o
 
 # target to build an object file
-src/main.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/src/main.cpp.o
-.PHONY : src/main.cpp.o
+src/jacobi.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/jacobi.dir/build.make CMakeFiles/jacobi.dir/src/jacobi.cpp.o
+.PHONY : src/jacobi.cpp.o
 
-src/main.i: src/main.cpp.i
-.PHONY : src/main.i
+src/jacobi.i: src/jacobi.cpp.i
+.PHONY : src/jacobi.i
 
 # target to preprocess a source file
-src/main.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/src/main.cpp.i
-.PHONY : src/main.cpp.i
+src/jacobi.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/jacobi.dir/build.make CMakeFiles/jacobi.dir/src/jacobi.cpp.i
+.PHONY : src/jacobi.cpp.i
 
-src/main.s: src/main.cpp.s
-.PHONY : src/main.s
+src/jacobi.s: src/jacobi.cpp.s
+.PHONY : src/jacobi.s
 
 # target to generate assembly for a file
-src/main.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/src/main.cpp.s
-.PHONY : src/main.cpp.s
+src/jacobi.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/jacobi.dir/build.make CMakeFiles/jacobi.dir/src/jacobi.cpp.s
+.PHONY : src/jacobi.cpp.s
 
 # Help Target
 help:
@@ -161,10 +161,10 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
-	@echo "... main"
-	@echo "... src/main.o"
-	@echo "... src/main.i"
-	@echo "... src/main.s"
+	@echo "... jacobi"
+	@echo "... src/jacobi.o"
+	@echo "... src/jacobi.i"
+	@echo "... src/jacobi.s"
 .PHONY : help
 
 

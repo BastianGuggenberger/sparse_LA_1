@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/c++
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/home/bastian/sparse_LA_1/src -I/home/bastian/sparse_LA_1/nanoblas/src
+CXX_INCLUDES = -I/home/bastian/sparse_LA_1/src -I/home/bastian/sparse_LA_1/nanoblas/src -isystem /usr/include/eigen3
 
 CXX_FLAGS = -std=gnu++20
 
