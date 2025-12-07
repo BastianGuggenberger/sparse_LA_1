@@ -1,0 +1,3 @@
+/home/bastian/sparse_LA_1/build/CMakeFiles/main.dir
+/home/bastian/sparse_LA_1/build/CMakeFiles/edit_cache.dir
+/home/bastian/sparse_LA_1/build/CMakeFiles/rebuild_cache.dir
