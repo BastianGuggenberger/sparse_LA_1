@@ -214,11 +214,11 @@ int generateLinSystemCOO(const double L
          cooRow[nnz+3] = l;
          cooRow[nnz+4] = l;
 
-         cooCol[nnz+0] = l;
-         cooCol[nnz+1] = l-(NX-1);
-         cooCol[nnz+2] = l-1;
-         cooCol[nnz+3] = l+1;
-         cooCol[nnz+4] = l+(NX-1);
+         cooCol[nnz+0] = l;   //center
+         cooCol[nnz+1] = l-(NX-1);  //bottom
+         cooCol[nnz+2] = l-1;    //left
+         cooCol[nnz+3] = l+1;    //right
+         cooCol[nnz+4] = l+(NX-1);  //top
 
          cooMat[nnz+0] = a11;
          cooMat[nnz+1] = a10;
@@ -520,7 +520,7 @@ int solveJacobi2D_A(const int nnz
       // compute residual
       res = computeResidual(nnz,N
                            ,cooRow,cooCol,cooMat
-                           ,aux,rhs,sol);
+                           ,aux,rhs,sol);//note that res of new x is computed (sol=aux, aux=sol, see parameters of the function)
 
       for (int l = 0; l<N;++l) {
          sol[l] = aux[l];
@@ -555,6 +555,7 @@ double computeResidual(const int nnz
                    ,const double * const rhs 
                    ,      double * const aux) {
 
+   //Matrix multiplication Ax:
    for (int l = 0; l<N;++l) {
       aux[l] = 0.0;
    }
