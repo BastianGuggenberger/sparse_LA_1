@@ -1,1 +1,0 @@
-/usr/bin/c++ CMakeFiles/jacobi.dir/src/jacobi.cpp.o -o jacobi 
