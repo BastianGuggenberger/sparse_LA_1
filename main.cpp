@@ -108,7 +108,6 @@ int main(int argc, char* argv[]) {
 
    // reset solution
    for (int i=0;i<N;++i) sol[i] = 0.5;
-
    // solve
    tp0 = chrono::steady_clock::now();
    ierr = ierr | solveJacobi2D_A(nnz,N
@@ -143,6 +142,7 @@ int main(int argc, char* argv[]) {
    for (int i=0;i<N;++i) sol[i] = 0.5;
 
    // solve
+   
    tp0 = chrono::steady_clock::now();
    ierr = ierr | solveJacobi2D_C(L,NX,NY
                                 ,TOL,MAX_ITERS

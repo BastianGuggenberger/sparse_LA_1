@@ -65,7 +65,6 @@ int solveJacobi2D_C(const double L
                    ,double* const aux
                    ,std::ofstream& LOG_FILE) {
 
-   cout << "test " << endl;
    //inspired by generateLinSystemCOO
 
    //prepare constants

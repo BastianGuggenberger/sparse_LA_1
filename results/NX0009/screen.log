@@ -7,14 +7,14 @@ Successfull convergence
 iters   : 281
 res     : 9.652e-07
 err     : 0.0034053
-seconds : 0.00139617
+seconds : 0.000171178
 
 SOLVER JACOBI C
 
 Successfull convergence
- - residual achieved 0
- - iterations 1
-iters : 1
-res   : 0
-err   : 0.457909
-wall t: 6.88e-06
+ - residual achieved 9.652e-07
+ - iterations 281
+iters : 281
+res   : 9.652e-07
+err   : 0.0034053
+wall t: 0.000101901
