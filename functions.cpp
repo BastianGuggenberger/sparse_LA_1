@@ -3,20 +3,22 @@
 
 using namespace std;
 
+/*
 inline int ij2l(const int i, const int j, const int Nx) {
    return (j-1)*(Nx-1)+(i-1);
+}
+*/
+
+double computeResidual_matrixfree(){
+   //to be done
 }
 
 int solveJacobi2D_C(const double L
                    ,const int NX, const int NY
                    ,const double TOL,const int MAX_ITERS
-                   //,double* const sol
-                   //,const double* const rhs
                    ,double& res , int& iters
-                   //,double* const aux
                    ,std::ofstream& LOG_FILE) {
 
-   //implementation without boundary conditions
    //inspired by generateLinSystemCOO
 
    //prepare constants
@@ -37,7 +39,7 @@ int solveJacobi2D_C(const double L
 
    iters = 0;
    while (res>TOL) {
-      const int N = (NX-1)*(NY-1); //amount of points - matrix is of size NxN
+      const int N = (NX-1)*(NY-1);
       
       //iterate over rows:
       for (int l=0; l<N; l++){
@@ -45,60 +47,96 @@ int solveJacobi2D_C(const double L
          int j = l / (NX-1) + 1; //j starts at 1
          int i = l % (NY-1) + 1; //i starts at 1
 
-//----------
-         //To be done: Boundary Conditions
-
-         //South Boundary
-         if(j==1){
-
-         }
-
-         //North Boundary
-         if(j==NX-1){
-
-
-         }
-
-         //West Boundary
-         if(i==1){
-
-         }
-
-         //East Boundary
-         if(i==NY-1){
-
-         }
-//----------------
-
-         //Inner points:
-
          //compute sum:
          double sum = 0.0;
-         int m;
+         double rhs = 0.0; //standard, will be edited for north boundary
+
+         //Boundary Conditions
+
+         if(j==1){
+            //South
+            if(i==1){
+               //South-West Boundary
+               //sum += a10 * sol[l-(NX-1)]; //a10 (south)
+               //sum += a01 * sol[l-1]; //a01 (west)
+               sum += a21 * sol[l+1]; //a21 (east)
+               sum += a12 * sol[l+(NX-1)]; //a12 (north)
+            }
+            else if (i==NY-1){
+               //South-East Boundary
+               //sum += a10 * sol[l-(NX-1)]; //a10 (south)
+               sum += a01 * sol[l-1]; //a01 (west)
+               //sum += a21 * sol[l+1]; //a21 (east)
+               sum += a12 * sol[l+(NX-1)]; //a12 (north)
+            }
+            else {
+               //South Boundary
+               //sum += a10 * sol[l-(NX-1)]; //a10 (south)
+               sum += a01 * sol[l-1]; //a01 (west)
+               sum += a21 * sol[l+1]; //a21 (east)
+               sum += a12 * sol[l+(NX-1)]; //a12 (north)
+            }
+         }
          
-         //a10 bottom:
-         m = l-NX;
-         sum += a10 * sol[m];
+         else if(j==NX-1){
+            //North
 
-         //a01 left:
-         m = l-1;
-         sum += a01 * sol[m];
+            //Non-zero Boundary Condition:
+            const double xi = static_cast<double>(i)*DX;
+            rhs = -a12*std::sin(M_PI*xi);
 
-         //a21 right:
-         m = l+1;
-         sum += a21 * sol[m];
+            if(i==1){
+               //North-West Boundary
+               sum += a10 * sol[l-(NX-1)]; //a10 (south)
+               //sum += a01 * sol[l-1]; //a01 (west)
+               sum += a21 * sol[l+1]; //a21 (east)
+               //sum += a12 * sol[l+(NX-1)]; //a12 (north)
+            }
+            else if (i==NY-1){
+               //North-East Boundary
+               sum += a10 * sol[l-(NX-1)]; //a10 (south)
+               sum += a01 * sol[l-1]; //a01 (west)
+               //sum += a21 * sol[l+1]; //a21 (east)
+               //sum += a12 * sol[l+(NX-1)]; //a12 (north)
+            }
+            else {
+               //Noth Boundary
+               sum += a10 * sol[l-(NX-1)]; //a10 (south)
+               sum += a01 * sol[l-1]; //a01 (west)
+               sum += a21 * sol[l+1]; //a21 (east)
+               //sum += a12 * sol[l+(NX-1)]; //a12 (north)
+            }
+         }
 
-         //a12 top:
-         m = l+NX;
-         sum += a12 * sol[m];
+         else if(i==1){
+            //West Boundary
+            sum += a10 * sol[l-(NX-1)]; //a10 (south)
+            //sum += a01 * sol[l-1]; //a01 (west)
+            sum += a21 * sol[l+1]; //a21 (east)
+            sum += a12 * sol[l+(NX-1)]; //a12 (north)
+         }
+
+         else if(i==NY-1){
+            //East Boundary
+            sum += a10 * sol[l-(NX-1)]; //a10 (south)
+            sum += a01 * sol[l-1]; //a01 (west)
+            //sum += a21 * sol[l+1]; //a21 (east)
+            sum += a12 * sol[l+(NX-1)]; //a12 (north)
+         }
+
+         else {
+            //Inner points:
+            sum += a10 * sol[l-(NX-1)]; //a10 (south)
+            sum += a01 * sol[l-1]; //a01 (west)
+            sum += a21 * sol[l+1]; //a21 (east)
+            sum += a12 * sol[l+(NX-1)]; //a12 (north)
+         }
          
-         aux[l] = (0.0-sum)/a11;
+         aux[l] = (rhs-sum)/a11;
       }
 
       // compute residual
-      res = computeResidual(nnz,N
-                           ,cooRow,cooCol,cooMat
-                           ,aux,rhs,sol);//note that res of new x is computed (sol=aux, aux=sol, see parameters of the function)
+      res = computeResidual_matrixfree(nnz,N,aux,rhs,sol);//to be done
 
       for (int l = 0; l<N;++l) {
          sol[l] = aux[l];
