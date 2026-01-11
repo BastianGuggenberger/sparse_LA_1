@@ -7,7 +7,7 @@ Successfull convergence
 iters   : 281
 res     : 9.652e-07
 err     : 0.0034053
-seconds : 0.000195495
+seconds : 0.000171178
 
 SOLVER JACOBI C
 
@@ -17,4 +17,4 @@ Successfull convergence
 iters : 281
 res   : 9.652e-07
 err   : 0.0034053
-wall t: 0.000116312
+wall t: 0.000101901

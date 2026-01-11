@@ -6,7 +6,7 @@
 tol=1e-6
 max_iters=1000000
 
-for ((i=3;i<9;i++));do
+for ((i=3;i<8;i++));do
 #for ((i=8;i<10;i++));do
    nx=$((2**i+1))
    odir=`printf "results/NX%04d" ${nx}`
