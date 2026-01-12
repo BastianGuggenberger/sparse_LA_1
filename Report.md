@@ -55,7 +55,7 @@ We can observe similar number of operation in that case,
 ## 2. Consequences
 The first improvement we can observe is the safety of the solution. Taking into account how dynamic memory allocation works—even compared to static memory allocation—one risks the impossibility of allocating the required memory chunk while the function is executed. Optimised case use implicit 5 point stencil that get rid of neccessity of storing large matrices that could cause memory problems for large systems.
 Considering the computational cost of the operation, Jacobi C outperforms Jacobi A by several times. Despite having the same number of iterations, each iteration takes a significantly smaller amount of time due to code optimization, the lack of additional memory allocation, and a more efficient implementation.
-It is also important to note that we still solve the same mathematical system; that is, the residual errors of the computation remain unchanged. Unfortunately such approach limits the possibility to work of algoriithm only to structured grids - were such stencil will work.
+It is also important to note that we still solve the same mathematical system; that is, the residual errors of the computation remain unchanged. Unfortunately such approach limits the possibility to work of algoriithm only to structured grids - were such stencil will work. Moreover handling boundary condition must be done via edge cases introduced in loops - we cannot ,,hardcode'' values in any other place.
 
 ### 2.1. Versatilitiy of the functions
 
