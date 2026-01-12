@@ -73,4 +73,5 @@ Considering the computational cost of the operation, Jacobi C outperforms Jacobi
 As it was noticed above, both methods are characterized by equal tolerance; therefore, the optimization is strictly connected with the “cost” of a given iteration, not with a trade-off in solution quality. If we take round-off errors into account, we still obtain the same number of operations in each iteration, which also supports this conclusion. Minor numerical differences could occur (due to different order of operation) however they were not noticed during experiments.
 ---
 
-## 4. Optimization flags
+## 4. optimization flags
+Both algorithms were compiled with the -O3 optimisation flag, so we can be sure that the observed differences come from the algorithm implementation rather than from how the compiler treated the code or which optimisation strategy it applied.
