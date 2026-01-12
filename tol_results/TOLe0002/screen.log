@@ -1,0 +1,20 @@
+
+SOLVER JACOBI A
+
+Successfull convergence
+ - residual achieved 0.00999835
+ - iterations 36562
+iters   : 36562
+res     : 0.00999835
+err     : 2.54849e-05
+seconds : 6.65402
+
+SOLVER JACOBI C
+
+Successfull convergence
+ - residual achieved 0.00999835
+ - iterations 36562
+iters : 36562
+res   : 0.00999835
+err   : 2.54849e-05
+wall t: 2.19275
