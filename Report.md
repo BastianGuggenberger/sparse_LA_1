@@ -47,7 +47,10 @@ for larger problems one can assume 5 read accesses per iteration as edge cases b
 
 *Jacobi A*:
 
-We can observe similar number of operation in that case, 
+We can observe the same number of operation in that case - however in different order. One can distinguish:
+- Reading of 4 points in neightborhood of center of stencil with RHS + 1 write operation to RHS.
+- Residual: Reading of 4 points in neightborhood of center of stencil and solution
+- Save step - 1 read + 1 write operation
 
 ---
 
