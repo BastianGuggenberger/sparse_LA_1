@@ -36,11 +36,6 @@ Comparison of both algortihms for different sizes of nxn Matrices:
 
 To simplify the calculation we will be looking into the memory intensive structures.
 
-*Jacobi A*:
-
--
-
-
 
 *Jacobi C*:
 
@@ -51,20 +46,23 @@ for larger problems one can assume 5 read accesses per iteration as edge cases b
 - Save solution: 1 read 1 write $ \implies 16 \text{ Bytes / Unknown / Iteration} $
 - Total: $ 104 \times N \text{ Bytes / Iteration} $
 
+*Jacobi A*:
 
+We can observe similar number of operation in that case, 
 
 ---
 
 ## 2. Consequences
-The first improvement we can observe is the safety of the solution. Taking into account how dynamic memory allocation works—even compared to static memory allocation—one risks the impossibility of allocating the required memory chunk while the function is executed.
+The first improvement we can observe is the safety of the solution. Taking into account how dynamic memory allocation works—even compared to static memory allocation—one risks the impossibility of allocating the required memory chunk while the function is executed. Optimised case use implicit 5 point stencil that get rid of neccessity of storing large matrices that could cause memory problems for large systems.
 Considering the computational cost of the operation, Jacobi C outperforms Jacobi A by several times. Despite having the same number of iterations, each iteration takes a significantly smaller amount of time due to code optimization, the lack of additional memory allocation, and a more efficient implementation.
-It is also important to note that we still solve the same mathematical system; that is, the residual errors of the computation remain unchanged.
+It is also important to note that we still solve the same mathematical system; that is, the residual errors of the computation remain unchanged. Unfortunately such approach limits the possibility to work of algoriithm only to structured grids - were such stencil will work.
 
 ### 2.1. Versatilitiy of the functions
 
 ### 2.2 Demands of the programmer
-Efficient programming of such an HPC system requires the programmer to take into account the memory blocks that will be needed in future stages of the algorithm, so that they are defined before the algorithm starts and can be reused by the executor without any modification, allocation, or reallocation of additional memory.
-Such an implementation should also avoid additional “temporary” arrays or variables that would be allocated during iterations, as they would introduce unnecessary overhead and redundant execution time.
+The first improvement we can observe is the safety of the solution. Taking into account how dynamic memory allocation works—even compared to static memory allocation—one risks being unable to allocate the required memory chunk while the function is executed. The optimized case uses an implicit 5-point stencil that gets rid of the necessity of storing large matrices, which could cause memory problems for large systems.
+Considering the computational cost of the operation, Jacobi C outperforms Jacobi A by several times. Despite having the same number of iterations, each iteration takes a significantly smaller amount of time due to code optimization, the lack of additional memory allocation, and a more efficient implementation.
+It is also important to note that we still solve the same mathematical system; that is, the residual errors of the computation remain unchanged. Unfortunately, such an approach limits the applicability of the algorithm to structured grids, where such a stencil will work.
 
 ---
 
