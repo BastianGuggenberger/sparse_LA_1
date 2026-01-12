@@ -30,7 +30,8 @@ Comparison of both algortihms for different sizes of nxn Matrices:
 |   129  |     13.2     |      4.2     |   -68%   |
 |   257  |      204     |      68      |   -67%   |
 
-It can be observed that the magnitude of the 'savings' increases with problem size; larger problems tend to exhibit more significant optimization results.
+It can be observed that the magnitude of the 'savings' increases with problem size; larger problems tend to exhibit more significant optimization results. This makes sense as larger problems will usually be bound by their memory meaning that we should observe a memory traffic ration of about 3:1.
+
 ### 1.2. Memory
 
 To simplify the calculation we will be looking into the memory intensive structures.
@@ -53,25 +54,29 @@ for larger problems one can assume 5 read accesses per iteration as edge cases b
 - Save solution: 1 read 1 write $ \implies 16 \text{ Bytes / Unknown / Iteration} $
 - Total: $ 104 \times N \text{ Bytes / Iteration} $
 
+As we can see our assumptions appears to be correct.
+
 ---
 
 ## 2. Consequences
-The first improvement we can observe is the safety of the solution. Taking into account how dynamic memory allocation works—even compared to static memory allocation—one risks the impossibility of allocating the required memory chunk while the function is executed. Optimised case use implicit 5 point stencil that get rid of neccessity of storing large matrices that could cause memory problems for large systems.
-Considering the computational cost of the operation, Jacobi C outperforms Jacobi A by several times. Despite having the same number of iterations, each iteration takes a significantly smaller amount of time due to code optimization, the lack of additional memory allocation, and a more efficient implementation.
-It is also important to note that we still solve the same mathematical system; that is, the residual errors of the computation remain unchanged. Unfortunately such approach limits the possibility to work of algorithm only to structured grids - were such stencil will work. Moreover handling boundary condition must be done via edge cases introduced in loops - we cannot ,,hardcode'' values in any other place. Unfortunately, such an approach limits the applicability of the algorithm to structured grids, where such a stencil will work. It is also important to note that we still solve the same mathematical system; that is, the residual errors of the computation remain unchanged.
 
 ### 2.1. Versatilitiy of the functions
 
-### 2.2 Demands of the programmer
+- The operator (laplace in our case) must be known beforehand as the matrix free approach uses it, we cannot enter an arbitrary matrix
+- Since we need boundary conditions the domain has to be relatively smooth, ideally rectangular
+- Sparsity of the Matrix is a requirement as otherwise the approach is very inefficient
+- Stencil is coded into the approach and thus has to be present in the matrix
 
-The first improvement we can observe is the safety of the solution. Taking into account how dynamic memory allocation works—even compared to static memory allocation—one risks being unable to allocate the required memory chunk while the function is executed. The optimized case uses an implicit 5-point stencil that gets rid of the necessity of storing large matrices, which could cause memory problems for large systems.
-Considering the computational cost of the operation, Jacobi C outperforms Jacobi A by several times. Despite having the same number of iterations, each iteration takes a significantly smaller amount of time due to code optimization, the lack of additional memory allocation, redundant memory traffic and a more efficient implementation.
+### 2.2 Demands for the programmer
+
+- As the matrix free approach discards the use of a matrix, the resulting code will be alot harder to debug as finding a specific source of an error is way more difficult (less data processed means less info available).
+- Since the approach is less general the code will also be less reusable, this results in high amounts of maintenance if one chooses to write ones software based on this approach.
 
 ---
 
 ## 3. Tolerance
 
-As it was noticed above, both methods are characterized by equal tolerance; therefore, the optimization is strictly connected with the “cost” of a given iteration, not with a trade-off in solution quality. If we take round-off errors into account, we still obtain the same number of operations in each iteration, which also supports this conclusion. Minor numerical differences could occur (due to different order of operation) however they were not noticed during experiments.
+From testing we saw that the tolerance requested seems to have a logarithmic relation with 
 
 ---
 
