@@ -63,13 +63,17 @@ It is also important to note that we still solve the same mathematical system; t
 ### 2.1. Versatilitiy of the functions
 
 ### 2.2 Demands of the programmer
+
 The first improvement we can observe is the safety of the solution. Taking into account how dynamic memory allocation works—even compared to static memory allocation—one risks being unable to allocate the required memory chunk while the function is executed. The optimized case uses an implicit 5-point stencil that gets rid of the necessity of storing large matrices, which could cause memory problems for large systems.
 Considering the computational cost of the operation, Jacobi C outperforms Jacobi A by several times. Despite having the same number of iterations, each iteration takes a significantly smaller amount of time due to code optimization, the lack of additional memory allocation, redundant memory traffic and a more efficient implementation.
 
 ---
 
 ## 3. Tolerance
+
 As it was noticed above, both methods are characterized by equal tolerance; therefore, the optimization is strictly connected with the “cost” of a given iteration, not with a trade-off in solution quality. If we take round-off errors into account, we still obtain the same number of operations in each iteration, which also supports this conclusion. Minor numerical differences could occur (due to different order of operation) however they were not noticed during experiments.
+
 ---
 
-## 4. Optimization flags
+## 4. optimization flags
+Both algorithms were compiled with the -O3 optimisation flag, so we can be sure that the observed differences come from the algorithm implementation rather than from how the compiler treated the code or which optimisation strategy it applied. We can say that $O3$ is the highest optimization level designed for HPC. It enables: loop unrolling, inlining, vectorizaton.
