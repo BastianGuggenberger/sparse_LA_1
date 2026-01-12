@@ -74,4 +74,4 @@ As it was noticed above, both methods are characterized by equal tolerance; ther
 ---
 
 ## 4. optimization flags
-Both algorithms were compiled with the -O3 optimisation flag, so we can be sure that the observed differences come from the algorithm implementation rather than from how the compiler treated the code or which optimisation strategy it applied.
+Both algorithms were compiled with the -O3 optimisation flag, so we can be sure that the observed differences come from the algorithm implementation rather than from how the compiler treated the code or which optimisation strategy it applied. We can say that $O3$ is the highest optimization level designed for HPC. It enables: loop unrolling, inlining, vectorizaton.
