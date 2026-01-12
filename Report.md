@@ -21,18 +21,35 @@ Testing is conducted on the Jupyter hub provided on the Tuwel page, the exact sp
 
 Comparison of both algortihms for different sizes of nxn Matrices:
 
-| Size n | Jacobi A [s] | Jacobi C [s] | Decrease |
+| Size nx | Jacobi A [s] | Jacobi C [s] | Decrease |
 |:----:|:------------:|:------------:|:--------:|
-|   3  |    1.95e-4   |    1.16e-4   |   -40%   |
-|   4  |    2.84e-3   |    1.28e-3   |   -55%   |
-|   5  |    4.39e-2   |    1.66e-2   |   -62%   |
-|   6  |     0.709    |     0.257    |   -64%   |
-|   7  |     13.2     |      4.2     |   -68%   |
-|   8  |      204     |      68      |   -67%   |
+|   9  |    1.95e-4   |    1.16e-4   |   -40%   |
+|   17  |    2.84e-3   |    1.28e-3   |   -55%   |
+|   33  |    4.39e-2   |    1.66e-2   |   -62%   |
+|   65  |     0.709    |     0.257    |   -64%   |
+|   129  |     13.2     |      4.2     |   -68%   |
+|   257  |      204     |      68      |   -67%   |
 
 
 
 ### 1.2. Memory
+
+To simplify the calculation we will be looking into the memory intensive structures.
+
+*Jacobi A*:
+
+-
+
+
+
+*Jacobi C*:
+
+for larger problems one can assume 5 read accesses per iteration as edge cases become less likely.
+
+- Update step: 5 double reads 1 write $ \implies 48 \text{ Bytes / Unknown / Iteration} $
+- Residual computation: 5 double reads $ \implies 40 \text{ Bytes / Unknown / Iteration} $
+- Save solution: 1 read 1 write $ \implies 16 \text{ Bytes / Unknown / Iteration} $
+- Total: $ 104 \times N \text{ Bytes / Iteration} $
 
 
 
