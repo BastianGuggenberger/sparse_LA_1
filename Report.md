@@ -35,6 +35,14 @@ It can be observed that the magnitude of the 'savings' increases with problem si
 
 To simplify the calculation we will be looking into the memory intensive structures.
 
+*Jacobi A*:
+
+- Update step: $ 24 \times nnz $
+- Residual computation: $ 24 \times nnz $
+- Residual norm: $ 16 \times N$
+- Save solution: $ 16 \times N$
+- $ nnz = 5 \times N$ due to stencil size
+- Total:  $ 272 \times N \text{ Bytes / Iteration} $
 
 *Jacobi C*:
 
@@ -45,15 +53,6 @@ for larger problems one can assume 5 read accesses per iteration as edge cases b
 - Save solution: 1 read 1 write $ \implies 16 \text{ Bytes / Unknown / Iteration} $
 - Total: $ 104 \times N \text{ Bytes / Iteration} $
 
-*Jacobi A*:
-
-We can observe the same number of operation in that case - however in different order. One can distinguish:
-- Reading 5 times solution column with one write operation
-- Reading matrix with solution 5 times
-- Save step - 1 read + 1 write operation
-
-
-More significant memory optimisation could be observed in total allocated memory - where in Jacobi C we get rid of ,,grid'' matrix allocation.
 ---
 
 ## 2. Consequences
