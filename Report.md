@@ -30,8 +30,7 @@ Comparison of both algortihms for different sizes of nxn Matrices:
 |   129  |     13.2     |      4.2     |   -68%   |
 |   257  |      204     |      68      |   -67%   |
 
-
-
+It can be observed that the magnitude of the 'savings' increases with problem size; larger problems tend to exhibit more significant optimization results.
 ### 1.2. Memory
 
 To simplify the calculation we will be looking into the memory intensive structures.
