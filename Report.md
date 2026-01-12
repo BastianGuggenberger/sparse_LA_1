@@ -48,10 +48,12 @@ for larger problems one can assume 5 read accesses per iteration as edge cases b
 *Jacobi A*:
 
 We can observe the same number of operation in that case - however in different order. One can distinguish:
-- Reading of 4 points in neightborhood of center of stencil with RHS + 1 write operation to RHS.
-- Residual: Reading of 4 points in neightborhood of center of stencil and solution
+- Reading 5 times solution column with one write operation
+- Reading matrix with solution 5 times
 - Save step - 1 read + 1 write operation
 
+
+More significant memory optimisation could be observed in total allocated memory - where in Jacobi C we get rid of ,,grid'' matrix allocation.
 ---
 
 ## 2. Consequences
