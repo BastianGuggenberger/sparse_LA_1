@@ -63,6 +63,8 @@ It is also important to note that we still solve the same mathematical system; t
 ### 2.1. Versatilitiy of the functions
 
 ### 2.2 Demands of the programmer
+Efficient programming of such an HPC system requires the programmer to take into account the memory blocks that will be needed in future stages of the algorithm, so that they are defined before the algorithm starts and can be reused by the executor without any modification, allocation, or reallocation of additional memory.
+Such an implementation should also avoid additional “temporary” arrays or variables that would be allocated during iterations, as they would introduce unnecessary overhead and redundant execution time.
 
 ---
 
