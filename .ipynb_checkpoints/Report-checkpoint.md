@@ -76,7 +76,7 @@ As we can see our assumptions appears to be correct.
 
 ## 3. Tolerance
 
-From testing we saw that the tolerance requested seems to have a logarithmic relation with 
+From testing we saw that the tolerance requested seems to have a logarithmic relation with the number of iterations and thus with performance, i.e. requesting a lot of precision will not result in a significantly longer runtime. This makes these iterative methods very exact however also means that going for a less accurate solution is completely unreasonable as the computation will just take very long anyway.
 
 ---
 
