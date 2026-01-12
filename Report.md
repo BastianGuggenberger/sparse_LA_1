@@ -4,7 +4,7 @@
 
 ### 0.1. Assignment
 
-In this assignment we were tasked to imporve an implementation of the Jacobi algorithm provided to us and conduct tests with regards to performance in comparison to the initial implementation. The new version is to be matrix free and should aim to improve time and memory usage while achieving the same result.
+In this assignment we were asked to improve an implementation of the Jacobi algorithm provided to us and conduct tests with regards to performance in comparison to the initial implementation. The new version is to be matrix free and should aim to improve time and memory usage while achieving the same result.
 
 This report will present the requested datapoints aswell as answer the questions provided in the excercise sheet.
 
@@ -56,6 +56,9 @@ for larger problems one can assume 5 read accesses per iteration as edge cases b
 ---
 
 ## 2. Consequences
+The first improvement we can observe is the safety of the solution. Taking into account how dynamic memory allocation works—even compared to static memory allocation—one risks the impossibility of allocating the required memory chunk while the function is executed.
+Considering the computational cost of the operation, Jacobi C outperforms Jacobi A by several times. Despite having the same number of iterations, each iteration takes a significantly smaller amount of time due to code optimization, the lack of additional memory allocation, and a more efficient implementation.
+It is also important to note that we still solve the same mathematical system; that is, the residual errors of the computation remain unchanged.
 
 ### 2.1. Versatilitiy of the functions
 
